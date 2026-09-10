@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div>
+  <h2>Me connecter</h2>
+  <form [formRoot]="loginForm">
+    <label
+      >Nom
+      <input type="text" [formField]="loginForm.username" placeholder="Nom d'utilisateur" />
+      @if (loginForm.username().touched() && loginForm.username().invalid()) {
+        @for (error of loginForm.username().errors(); track error) {
+          <p>{{ error.message }}</p>
+        }
+      }
+    </label>
+    <label
+      >Mot de passe
+      <input type="password" [formField]="loginForm.password" placeholder="Mot de passe" />
+      @if (loginForm.password().touched() && loginForm.password().invalid()) {
+        @for (error of loginForm.password().errors(); track error) {
+          <p>{{ error.message }}</p>
+        }
+      }
+    </label>
+
+    <div class="buttonDiv">
+      <button type="submit">Me connecter</button>
+      <button (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
+</div>
