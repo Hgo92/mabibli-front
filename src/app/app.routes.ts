@@ -18,6 +18,6 @@ export const routes: Routes = [
   {
     path: 'library',
     component: LibraryHome,
-    canActivate: [],
+    canActivate: [loggedGuard],
   },
 ];

@@ -21,5 +21,8 @@ export class Home {
     this.router.navigate(['/register']);
   }
 
-  toTest() {}
+  toTest() {
+    this.auth.login('Invité', 'mdpTest92!');
+    this.router.navigate(['/library']);
+  }
 }

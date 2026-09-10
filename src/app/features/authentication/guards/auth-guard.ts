@@ -12,7 +12,6 @@ function createAuthGuard(requiresAuth: boolean, redirectTo: string): CanActivate
     let isLoggedIn;
 
     typeof authService.getToken() === 'string' ? (isLoggedIn = true) : (isLoggedIn = false);
-
     if (isLoggedIn === requiresAuth) {
       return true;
     }
@@ -20,5 +19,5 @@ function createAuthGuard(requiresAuth: boolean, redirectTo: string): CanActivate
   };
 }
 
-export const loggedGuard = createAuthGuard(true, '/library');
-export const unloggedGuard = createAuthGuard(false, '/home');
+export const loggedGuard = createAuthGuard(true, '/home');
+export const unloggedGuard = createAuthGuard(false, '/library');
