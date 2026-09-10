@@ -1,0 +1,11 @@
+@if (this.showLogOut) {
+  <div>
+    <p>👋 Vous avez été déconnecté !</p>
+  </div>
+} @else {
+  <mat-dialog-actions>
+    <h2>Voulez-vous vous déconnecter ?</h2>
+    <button matButton (click)="onLogout()">Me déconnecter</button>
+    <button matButton mat-dialog-close>Annuler</button>
+  </mat-dialog-actions>
+}
