@@ -1,1 +1,28 @@
-<p>register works!</p>
+<div>
+  <h2>Créer mon compte</h2>
+  <form [formRoot]="registerForm">
+    <label
+      >Nom
+      <input type="text" [formField]="registerForm.username" placeholder="Nom d'utilisateur" />
+      @if (registerForm.username().touched() && registerForm.username().invalid()) {
+        @for (error of registerForm.username().errors(); track error) {
+          <p>{{ error.message }}</p>
+        }
+      }
+    </label>
+    <label
+      >Mot de passe
+      <input type="password" [formField]="registerForm.password" placeholder="Mot de passe" />
+      @if (registerForm.password().touched() && registerForm.password().invalid()) {
+        @for (error of registerForm.password().errors(); track error) {
+          <p>{{ error.message }}</p>
+        }
+      }
+    </label>
+
+    <div class="buttonDiv">
+      <button type="submit">S'inscrire</button>
+      <button (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
+</div>
