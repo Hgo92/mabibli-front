@@ -58,4 +58,18 @@ export class Auth {
 
     return token;
   }
+
+  // Méthode pour récupérer le nom d'utilisateur (à partir du token)
+  getUsername(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      const binary = atob(token.split('.')[1]);
+      const bytes = Uint8Array.from(binary, (ch) => ch.charCodeAt(0));
+      const payload = new TextDecoder().decode(bytes);
+      return JSON.parse(payload).sub ?? null;
+    } catch {
+      return null;
+    }
+  }
 }

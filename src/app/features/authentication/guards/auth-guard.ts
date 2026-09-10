@@ -19,5 +19,5 @@ function createAuthGuard(requiresAuth: boolean, redirectTo: string): CanActivate
   };
 }
 
-export const loggedGuard = createAuthGuard(true, '/home');
+export const loggedGuard = createAuthGuard(true, '');
 export const unloggedGuard = createAuthGuard(false, '/library');
