@@ -9,12 +9,16 @@ function createAuthGuard(requiresAuth: boolean, redirectTo: string): CanActivate
     const authService = inject(Auth);
     const router = inject(Router);
 
-    if (authService.getToken() && requiresAuth) {
+    let isLoggedIn;
+
+    typeof authService.getToken() === 'string' ? (isLoggedIn = true) : (isLoggedIn = false);
+
+    if (isLoggedIn === requiresAuth) {
       return true;
     }
     return router.createUrlTree([redirectTo]);
   };
 }
 
-export const loggedGuard = createAuthGuard(true, '');
+export const loggedGuard = createAuthGuard(true, '/library');
 export const unloggedGuard = createAuthGuard(false, '/home');
