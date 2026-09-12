@@ -1,0 +1,23 @@
+<mat-dialog-content>
+  <h3>Ajouter une bibliothèque</h3>
+  <form [formRoot]="addForm">
+    <div>
+      <label for="title">Nom de votre bibliothèque</label>
+      <input
+        id="title"
+        type="text"
+        [formField]="addForm.title"
+        placeholder="Ex: Mes livres préférés, Les livres de Timéo"
+      />
+      @if (addForm.title().touched() && addForm.title().invalid()) {
+        @for (error of addForm.title().errors(); track error) {
+          <p style="color: red">{{ error.message }}</p>
+        }
+      }
+    </div>
+    <div>
+      <button mat-button type="submit" [disabled]="addForm.title().invalid()">Créer</button>
+      <button (click)="cancel()">Annuler</button>
+    </div>
+  </form>
+</mat-dialog-content>

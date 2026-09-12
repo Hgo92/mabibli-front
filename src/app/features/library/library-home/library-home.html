@@ -1,2 +1,23 @@
 <app-headbar />
-<p>library-home works!</p>
+<h2>Mes bibliothèques</h2>
+<div>
+  <button (click)="toAddComponent()">Ajouter une bibliothèque</button>
+</div>
+@if (librariesResource.isLoading()) {
+  <p>Chargement...</p>
+} @else if (error()) {
+  <p>Erreur de chargement</p>
+} @else {
+  @for (library of libraries(); track library.id) {
+    <div>
+      <h1>{{ library.title }}</h1>
+
+      <ul>
+        @for (book of books(); track book.id) {
+          <app-book-component />
+        }
+        <app-add-book-component />
+      </ul>
+    </div>
+  }
+}
